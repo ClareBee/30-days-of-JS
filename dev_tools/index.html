@@ -10,37 +10,51 @@
 
   <script>
     const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
-
+    // use 'Break on' e.g. w attribute modifications
     function makeGreen() {
       const p = document.querySelector('p');
       p.style.color = '#BADA55';
       p.style.fontSize = '50px';
     }
 
-    // Regular
-
     // Interpolated
-
+    const name = "Bob"
+    console.log("Hello! My name is %s", name);
+    console.log(`Hello! My name is ${name}`);
     // Styled
-
+    console.log('%c More fun than the regular stuff', 'font-size:50px; color: green;');
     // warning!
-
+    console.warn('Oh noes');
     // Error :|
-
-    // Info
-
+    console.error('Disaster');
     // Testing
-
+    console.assert(name === "Bob", "This msg won't appear");
+    console.assert(name !== "Bob", "That's so wrong");
     // clearing
-
+    // console.clear();
     // Viewing DOM Elements
-
+    const p = document.querySelector('p');
+    console.dir(p);
     // Grouping together
-
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.groupEnd(`${dog.name}`);
+    })
     // counting
-
+    console.count('Hello');
+    console.count('Hello');
     // timing
-
+    console.time('fetching data');
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json)
+      .then(data => {
+      console.timeEnd('fetching data');
+      console.log('data');
+    });
+    // table
+    console.table(dogs);
   </script>
 </body>
 </html>
