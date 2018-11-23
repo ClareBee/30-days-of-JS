@@ -53,13 +53,37 @@
     };
 
     // and think we make a copy:
-
+    // const captain = person;
+    // captain.age = 90;
+    // console.log('person age', person.age);
+    // console.log('captain age', captain.age);
+    // NO! you're just referencing, therefore a change affects the original to which it points!
     // how do we take a copy instead?
-
-    // We will hopefully soon see the object ...spread
-
-    // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
-
+    const captain = Object.assign({}, person, { age: 99, number: 5 });
+    console.log('person age', person.age);
+    console.log('captain age', captain.age);
+    console.log('captain with number', captain);
+    // the object ...spread
+    const captain2 = {...person};
+    console.log(captain2);
+    const nestedObject = {
+      name: 'Wes',
+      social: {
+        facebook: true,
+        instagram: false
+      }
+    }
+    const copy = Object.assign({}, nestedObject);
+    console.log(copy);
+    copy.name = 'Bob';
+    console.log('original name', nestedObject.name);
+    console.log('new name', copy.name);
+    // BUT one level only
+    copy.social.facebook = false; // this changes the original nestedObject too
+    console.log('copy:', copy,
+    console.log('original:', nestedObject);
+    // sneaky workaround for a deep clone?
+    const copy2 = JSON.parse(JSON.stringify(copy));
   </script>
 
 </body>
