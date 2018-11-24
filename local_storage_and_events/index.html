@@ -56,7 +56,20 @@
       `;
     }).join('');
   }
+
+  function toggleDone(e) {
+    if(!e.target.matches('input')) return; //skip inless an input
+    const el = e.target;
+    const index = el.dataset.index;
+    items[index].done = !items[index].done;
+    // updates
+    localStorage.setItem('items', JSON.stringify(items));
+    populateList(items, itemsList)
+  }
+
   addItems.addEventListener('submit', addItem);
+  // event delegation for items inside list
+  itemsList.addEventListener('click', toggleDone);
   populateList(items, itemsList)
 </script>
 
