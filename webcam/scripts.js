@@ -26,8 +26,16 @@ function paintToCanvas(){
 }
 
 function takePhoto(){
+  // sound effect
   snap.currentTime = 0;
   snap.play();
+  // data from canvas as base64
+  const data = canvas.toDataURL('image/jpeg');
+  const link = document.createElement('a');
+  link.href = data;
+  link.setAttribute('download', 'handsome');
+  link.innerHTML = `<img src="${data}" alt="Handsome human"/>`;
+  strip.insertBefore(link, strip.firstChild);
 }
 getVideo();
 video.addEventListener('canplay', paintToCanvas);
