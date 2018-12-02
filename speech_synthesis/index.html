@@ -40,7 +40,10 @@
 
   function populateVoices(){
     voices = this.getVoices();
-    voicesDropdown.innerHTML = voices.map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`).join('');
+    console.log(voices);
+    voicesDropdown.innerHTML = voices
+      .filter(voice => !voice.name.includes("Google"))
+      .map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`).join('');
   }
 
   function setVoice(){
