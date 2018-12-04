@@ -43,7 +43,15 @@
 
 <button></button>
 <script>
-
+  const divs = document.querySelectorAll('div');
+  function logText(e) {
+    console.log(this.classList.value);
+    // stops event bubbling
+    e.stopPropagation();
+  }
+  // { capture: true } reverses order - defaults to false
+  //  once makes each clickable once only until page reload - useful for buttons
+  divs.forEach(div => div.addEventListener('click', logText, { once: true }));
 </script>
 </body>
 </html>
